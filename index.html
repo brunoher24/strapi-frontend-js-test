@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">    
     <link rel="stylesheet" href="index.css">
     <title>mon super blog</title>
 </head>
+
 <body>
     <h1>Mon super blog</h1>
+    <article id="signup-form">
+        <form>
+            <h2>S'inscrire</h2>
+            <p>
+                <label for="signup-username-input">Votre nom</label>
+                <input class="form-input" type="text" id="signup-username-input">
+            </p>
+            <p>
+                <label for="signup-email-input">Votre mail</label>
+                <input class="form-input" type="email" id="signup-email-input">
+            </p>
+            <p>
+                <label for="signup-password-input">Votre mot de passe</label>
+                <input class="form-input" type="password" id="signup-password-input">
+            </p>
 
-    <form id="signup-form">
-        <h2>S'inscrire</h2>
-        <p>
-            <label for="signup-username-input">Votre nom</label>
-            <input type="text" id="signup-username-input">
-        </p>
-        <p>
-            <label for="signup-email-input">Votre mail</label>
-            <input type="email" id="signup-email-input">
-        </p>
-        <p>
-            <label for="signup-password-input">Votre mot de passe</label>
-            <input type="password" id="signup-password-input">
-        </p>
+            <p>
+                <label for="signup-age-input">Votre age</label>
+                <input class="form-input" type="number" min="14" max="120" id="signup-age-input">
+            </p>
 
-        <p>
-            <label for="signup-age-input">Votre age</label>
-            <input type="number" min="14" max="120" id="signup-age-input">
-        </p>
-        
-        <input id="signup-btn" type="submit" value="Créer un compte">
+            <input class="btn full-btn" id="signup-btn" type="submit" value="Créer un compte">
+        </form>
         <p><button class="toggle-forms">Se connecter</button></p>
-    </form>
+    </article>
 
-    <form id="login-form">
-        <h2>Se connecter</h2>
-        <p>
-            <label for="login-email-input">Votre mail</label>
-            <input type="email" id="login-email-input">
-        </p>
-        <p>
-            <label for="login-password-input">Votre mot de passe</label>
-            <input type="password" id="login-password-input">
-        </p>
-        
-        <input id="login-btn" type="submit" value="Se connecter">
+    <article id="login-form">
+        <form>
+            <h2>Se connecter</h2>
+            <p>
+                <label for="login-email-input">Votre mail</label>
+                <input class="form-input" type="email" id="login-email-input">
+            </p>
+            <p>
+                <label for="login-password-input">Votre mot de passe</label>
+                <input class="form-input" type="password" id="login-password-input">
+            </p>
 
+            <input class="btn full-btn" id="login-btn" type="submit" value="Connexion">
+        </form>
         <p><button class="toggle-forms">Pas encore de compte ?</button></p>
-    </form>
+    </article>
 
 
-    <ul id="posts-list">
+    <a class="btn empty-btn" href="./pages/posts/posts.html">Voir tous les articles</a>
 
-    </ul>
-    
     <script src="index.js"></script>
 </body>
+
 </html>
