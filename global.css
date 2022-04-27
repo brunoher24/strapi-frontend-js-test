@@ -3,11 +3,19 @@
  --color-2: white; 
  --color-3: #ececec; 
  --color-4: #1d7bbe; 
+ --color-5: #666464;
 }
 
 body {
     margin: 0;
     background-color: var(--color-3);
+    color: var(--color-1);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+    object-fit: cover;
+    object-position: center;
 }
 
 .btn {

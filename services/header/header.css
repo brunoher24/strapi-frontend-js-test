@@ -1,0 +1,64 @@
+#app-header-top {
+    background-color: var(--color-2);
+    height: 90px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 1px 1px 4px silver;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(-110px);
+}
+
+.animate-appear-header, .header-no-scroll {
+    animation: appear-down 1s ease-out forwards;
+}
+
+.animate-disappear-header {
+    animation: disappear-down 1s ease-out forwards;
+}
+
+.spacer-110 {
+    height: 110px;
+}
+
+@keyframes  appear-down {
+    from {
+        opacity: 0;
+        transform: translateY(-110px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes  disappear-down {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-110px);
+    }
+}
+
+@media all and (max-width: 700px) {
+    #app-header-top {
+        height: auto;
+        transform: translateY(-220px);
+    }
+
+    #app-header-top h1{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

@@ -1,6 +1,8 @@
 (() => {
     'use strict';
 
+    HEADER_SERVICE.init();
+
     let apiToken = "";
 
     let showLogin = true;
@@ -99,7 +101,6 @@
             .catch(error => {
                 console.log("Une erreur est survenue : ", error);
             });
-
     }
 
     signupForm.style.display = "none";
