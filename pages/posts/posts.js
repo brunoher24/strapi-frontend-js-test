@@ -64,7 +64,6 @@
         const li = document.createElement("li");
         postCategories.appendChild(li);
         const button = document.createElement("button");
-        console.log(category);
         button.innerText = category.attributes.name;
         li.appendChild(button);
         button.addEventListener("click", () => {

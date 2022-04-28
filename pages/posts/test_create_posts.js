@@ -18,7 +18,6 @@
     //     })
     //         .then(response => response.json())
     //         .then(result => {
-    //             console.log(result);
     //             displayPosts(result.data);
     //         })
     //         .catch(error => {
