@@ -72,8 +72,11 @@
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
-                window.sessionStorage.strapitestbruno2404 = result.jwt;
+                const userInfosStringified = JSON.stringify({
+                    jwt: result.jwt,
+                    uid: result.user.id
+                });
+                window.sessionStorage.strapitestbruno2404 = userInfosStringified;
             })
             .catch(error => {
                 console.log("Une erreur est survenue : ", error);
@@ -95,8 +98,12 @@
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result.jwt);
-                window.sessionStorage.strapitestbruno2404 = result.jwt;
+                console.log(result);
+                const userInfosStringified = JSON.stringify({
+                    jwt: result.jwt,
+                    uid: result.user.id
+                });
+                window.sessionStorage.strapitestbruno2404 = userInfosStringified;
             })
             .catch(error => {
                 console.log("Une erreur est survenue : ", error);
