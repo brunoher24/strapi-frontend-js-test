@@ -1,3 +1,30 @@
+#app-header-top nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: -10px;
+}
+
+#post-categories {
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
+#post-categories button {
+    padding: 15px;
+    border: none;
+    background-color: transparent;
+}
+
+#post-categories button:hover, #post-categories button:active {
+    color: var(--color-2);
+    transition: background-color 0.7s ease-out;
+    background-color: var(--color-1);
+}
+
 #posts-list {
     list-style-type: none;
     padding: 0;

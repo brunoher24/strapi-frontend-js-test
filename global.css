@@ -18,6 +18,10 @@ img {
     object-position: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 .btn {
     width: 90%;
     display: block;

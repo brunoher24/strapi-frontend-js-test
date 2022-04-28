@@ -1,6 +1,5 @@
 #app-header-top {
     background-color: var(--color-2);
-    height: 90px;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -53,7 +52,6 @@
 
 @media all and (max-width: 700px) {
     #app-header-top {
-        height: auto;
         transform: translateY(-220px);
     }
 

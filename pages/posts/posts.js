@@ -3,52 +3,25 @@
     HEADER_SERVICE.init();
 
     const { jwt }  = JSON.parse(window.sessionStorage.strapitestbruno2404);
+    
     let pageNumber = 1;
     let pageCount;
+    let selectedCategory = null;
+    let _posts = [];
+    let _categories = [];
+    
+    const postsList =  document.getElementById("posts-list");
     const loadMoreBtn = document.getElementById("load-more-btn");
     const pageIndicator = document.getElementById("page-indicator");
     const postCategories = document.getElementById("post-categories");
-
-    const _posts = [];
-    let _categories = [], _categoriesLength = 0;
     
-    function setRandomCategoryToPost(postId) {
-        const body = JSON.stringify({
-            data : {
-                category: _categories[Math.floor(Math.random() * _categoriesLength)].id
-            }
-        });
-
-        fetch('http://localhost:1337/api/posts/'+postId, {
-            method: "PUT",
-            body: body,
-            headers: {
-                Authorization: `Bearer ${jwt}`,
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => {
-                console.log("Une erreur est survenue : ", error);
-            });
-    }
-
-    function setRandomCategoriesToPosts() {
-        _posts.forEach(post => {
-            setRandomCategoryToPost(post.id);
-        });
-    }
 
     loadMoreBtn.addEventListener("click", () => {
         if(pageNumber === pageCount) {
-            setRandomCategoriesToPosts();
             return;
         } 
         pageNumber++;
-        getPosts();
+        getPosts({filterCategoryId: selectedCategory});
 
         let scrollHeight = Math.max(
             document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -64,17 +37,20 @@
     });
     
 
-    function getPosts() {
+    function getPosts(options = {}) {
+        let urlFilter = "";
+        if(options.filterCategoryId) {
+            urlFilter = `filters[category][id][$eq]=${options.filterCategoryId}&`  
+        }
         const urlPopulate   = 'populate[users_permissions_user][fields][0]=username&populate[image][fields][0]=url&populate[image][fields][1]=name&populate[category][fields][0]=name';
         const urlPagination = `pagination[page]=${pageNumber}&pagination[pageSize]=10`;
-        fetch('http://localhost:1337/api/posts?'+urlPopulate+"&"+urlPagination, {
+        fetch(`http://localhost:1337/api/posts?${urlFilter}${urlPopulate}&${urlPagination}`, {
             headers: {
                 Authorization: `Bearer ${jwt}`
             }
         })
             .then(response => response.json())
             .then(result => {
-                console.log(result.data);
                 pageCount = result.meta.pagination.pageCount;
                 pageIndicator.innerHTML = `Page ${pageNumber}/${pageCount}`;
                 displayPosts(result.data);
@@ -97,7 +73,12 @@
     }
 
     function filterPostsByCategory(categoryId) {
-        console.log(categoryId);
+        pageNumber = 1;
+        pageCount = 1;
+        _posts = [];
+        postsList.innerHTML = "";
+        selectedCategory = categoryId;
+        getPosts({filterCategoryId: categoryId})
     }
 
     function getCategories() {
@@ -109,7 +90,6 @@
             .then(response => response.json())
             .then(result => {
                 _categories = result.data;
-                _categoriesLength = _categories.length;
                 _categories.forEach(category => {
                     addCategoryToNavMenu(category);
                 });
@@ -125,7 +105,7 @@
             _posts.push(post);
             htmlStr += generatePostHtml(post.attributes);
         });
-        document.getElementById("posts-list").innerHTML += htmlStr;
+        postsList.innerHTML += htmlStr;
     }
     
     function generatePostHtml(post) {
